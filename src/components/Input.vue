@@ -7,15 +7,23 @@
       :state="state"
       class="fieldset"
     >
-      <b-form-input
-        :id="`input-${id}`"
-        v-model="text"
-        :state="state"
-        :placeholder="placeholder"
-        trim
-        v-mask="mask"
-        class="input"
-      ></b-form-input>
+      <b-input-group>
+        <template v-if="prepend" #prepend>
+          <b-input-group-text class="input-prepend">{{
+            prepend
+          }}</b-input-group-text>
+        </template>
+        <b-form-input
+          :id="`input-${id}`"
+          v-model="text"
+          :state="state"
+          :placeholder="placeholder"
+          trim
+          v-mask="mask"
+          class="input"
+          input
+        ></b-form-input>
+      </b-input-group>
     </b-form-group>
   </div>
 </template>
@@ -29,6 +37,7 @@ export default {
     placeholder: String,
     msgInvalidFeedBack: String,
     mask: String,
+    prepend: String,
     range: { begins: Number, ends: Number },
   },
   computed: {
@@ -72,5 +81,12 @@ export default {
 
 .input {
   border-color: #483698;
+}
+
+.input-prepend {
+  border-color: #483698;
+  background: #483698;
+  color: #fff;
+  font-weight: bolder;
 }
 </style>
