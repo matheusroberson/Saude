@@ -1,13 +1,14 @@
 <template>
   <div class="Button">
-    <b-link
+    <b-button
       :style="`background-color: ${baseColor}; border-color: ${baseColor}; color: ${textColor}`"
-      class="button"
+      class="button btn-block"
       :disabled="disable"
       :to="nextRoute"
+      pill
     >
       {{ text }}
-    </b-link>
+    </b-button>
   </div>
 </template>
 
@@ -32,7 +33,9 @@ export default {
 .button {
   font-family: "Comfortaa", cursive;
   font-weight: bolder;
-  border-radius: 20px;
-  padding: 9px 15px;
+}
+
+a.disabled {
+  pointer-events: none;
 }
 </style>
