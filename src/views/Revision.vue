@@ -8,41 +8,37 @@
       </b-row>
       <b-row class="subContainer">
         <b-col>
-          <b-row>
-            <b-col cols="12">
-              <p class="text">Nome completo</p>
-              <p class="subtext">{{ this.data.name }}</p>
-            </b-col>
-            <b-col cols="12">
-              <p class="text">CPF</p>
-              <p class="subtext">{{ this.data.cpf }}</p>
-            </b-col>
-            <b-col cols="12">
-              <p class="text">Número de celular ou telefone</p>
-              <p class="subtext">{{ this.data.cel }}</p>
-            </b-col>
-            <b-col cols="12">
-              <p class="text">Estado/Cidade</p>
-              <p class="subtext">
-                {{ this.data.state }} - {{ this.data.city }}
-              </p>
-            </b-col>
-            <b-col cols="12">
-              <p class="text">Especialidade principal</p>
-              <p class="subtext">{{ this.data.specialty }}</p>
-            </b-col>
-            <b-col cols="12">
-              <p class="text">Preço da consulta</p>
-              <p class="subtext">R$ {{ this.data.price }}</p>
-            </b-col>
-            <b-col>
-              <p class="text">Formas de pagamento da consulta</p>
-              <span v-for="(item, index) in this.data.payment" :key="index">
-                <p class="subtext">{{ item }}</p>
-              </span>
-            </b-col>
-          </b-row>
-          <b-col>
+          <div>
+            <p class="text">Nome completo</p>
+            <p class="subtext">{{ this.data.name }}</p>
+          </div>
+          <div>
+            <p class="text">CPF</p>
+            <p class="subtext">{{ this.data.cpf }}</p>
+          </div>
+          <div>
+            <p class="text">Número de celular ou telefone</p>
+            <p class="subtext">{{ this.data.cel }}</p>
+          </div>
+          <div>
+            <p class="text">Estado/Cidade</p>
+            <p class="subtext">{{ this.data.state }} - {{ this.data.city }}</p>
+          </div>
+          <div>
+            <p class="text">Especialidade principal</p>
+            <p class="subtext">{{ this.data.specialty }}</p>
+          </div>
+          <div>
+            <p class="text">Preço da consulta</p>
+            <p class="subtext">R$ {{ this.data.price }}</p>
+          </div>
+          <div>
+            <p class="text">Formas de pagamento da consulta</p>
+            <span v-for="(item, index) in this.data.payment" :key="index">
+              <p class="subtext">{{ item }}</p>
+            </span>
+          </div>
+          <div>
             <b-row>
               <b-col>
                 <Button
@@ -50,7 +46,7 @@
                   textColor="#483698"
                   text="CASDASTRAR PROFISSIONAL"
                   :disable="false"
-                  nextRoute="/Conclusion"
+                  nextRoute="/conclusion"
                 />
                 <Button
                   baseColor="transparent"
@@ -61,7 +57,7 @@
                 />
               </b-col>
             </b-row>
-          </b-col>
+          </div>
         </b-col>
         <b-col class="d-none d-sm-block">
           <b-img
@@ -116,8 +112,8 @@ export default {
 }
 .subtext {
   font-family: "Comfortaa", cursive;
-  color: #b9b9b9;
-  font-size: 0.6rem;
+  color: #8a8a8a;
+  font-size: 0.8rem;
 }
 
 .text.title {
