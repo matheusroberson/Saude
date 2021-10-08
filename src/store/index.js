@@ -30,15 +30,24 @@ export default new Vuex.Store({
   getters: {
     getCurrentData: (state) => state,
     getFirstStep: (state) =>
-      state.name !== "" &&
+      // state.name !== "" &&
       state.name.length >= 3 &&
       state.name.length <= 48 &&
-      state.cpf !== "" &&
+      // state.cpf !== "" &&
       state.cpf.length === 14 &&
       state.city !== null &&
       state.state !== null &&
-      state.cel !== "" &&
+      // state.cel !== "" &&
       state.cel.length === 16
+        ? true
+        : false,
+    getLastStep: (state) =>
+      state.specialty !== null &&
+      state.price <= 350.0 &&
+      state.price >= 30.0 &&
+      state.payment.length > 0 &&
+      state.payment.filter((item) => item.trim() === "Cartão de crédito")
+        .length === 0
         ? true
         : false,
   },
