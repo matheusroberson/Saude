@@ -38,8 +38,9 @@ export default {
     label: String,
     placeholder: String,
     msgInvalidFeedBack: String,
-    mask: String,
+    mask: Array,
     prepend: String,
+    rangeKind: String,
     range: { begins: Number, ends: Number },
   },
   computed: {
@@ -48,6 +49,12 @@ export default {
       switch: "getFirstStep",
     }),
     state() {
+      if (this.rangeKind === "value") {
+        if (this.text > 0) {
+          return this.text >= this.range.begins && this.text <= this.range.ends;
+        }
+      }
+
       if (this.text.length > 0) {
         return (
           this.text.length >= this.range.begins &&
