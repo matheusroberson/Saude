@@ -12,14 +12,14 @@
       <b-row class="subContainer">
         <b-col>
           <Input
-            :id="1"
+            id="name"
             label="Nome completo*"
             placeholder="Digite o nome completo"
             msgInvalidFeedBack="Digite entre 3 a 48 caracteres"
             :range="{ begins: 3, ends: 48 }"
           />
           <Input
-            :id="2"
+            id="cpf"
             label="CPF*"
             placeholder="Digite um CPF"
             msgInvalidFeedBack="O campo deve conter 11 caracteres númericos"
@@ -28,7 +28,7 @@
             class="input-small"
           />
           <Input
-            :id="3"
+            id="cel"
             label="Número de celular*"
             placeholder="(00) 0 0000-0000"
             msgInvalidFeedBack="O campo deve conter 11 caracteres númericos"
@@ -39,7 +39,7 @@
           <b-row>
             <b-col>
               <Select
-                :id="1"
+                id="state"
                 :optionsGroup="optionsState"
                 label="Estado*"
                 :disable="false"
@@ -47,7 +47,7 @@
             </b-col>
             <b-col>
               <Select
-                :id="1"
+                id="city"
                 :optionsGroup="optionCity"
                 label="Cidade*"
                 :disable="disableSelect"
@@ -70,11 +70,11 @@
           <b-row>
             <b-col>
               <Button
-                :baseColor="disableButton ? '#B9B9B9' : '#483698'"
+                :baseColor="!this.switch ? '#B9B9B9' : '#483698'"
                 textColor="#F9F9F9"
                 text="PRÓXIMO"
-                :disable="disableButton"
-                nextRoute="Attendance"
+                :disable="!this.switch"
+                nextRoute="attendance"
                 class="button"
               />
             </b-col>
@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 import Input from "@/components/Input.vue";
 import Button from "@/components/Button.vue";
@@ -106,23 +106,27 @@ export default {
     Select,
     Button,
   },
-  computed: mapGetters({
-    data: "getCurrentData",
-  }),
+  computed: {
+    ...mapGetters({
+      data: "getCurrentData",
+      switch: "getFirstStep",
+    }),
+    ...mapState(["state"]),
+  },
   watch: {
-    data: function () {
-      if (this.data.state) {
+    state: function (newValue, oldValue) {
+      if (newValue === null || oldValue === null)
         this.disableSelect = !this.disableSelect;
-      }
 
       this.optionCity = this.optionsToCity.filter(
-        (item) => item.value == this.data.state
-      ).options;
+        (item) => item.value == newValue
+      )[0].options;
     },
   },
   data() {
     return {
       optionsState: [
+        { value: null, text: "Selecione" },
         { value: "Paraná", text: "Paraná" },
         { value: "Rio Grande do Sul", text: "Rio Grande do Sul" },
         { value: "Santa Catarina", text: "Santa Catarina" },
@@ -132,39 +136,30 @@ export default {
         {
           value: "Paraná",
           options: [
-            {
-              value: "Londrina",
-              text: "Londrina",
-            },
-            {
-              value: "Maringá",
-              text: "Maringá",
-            },
+            { value: null, text: "Selecione" },
+            { value: "Londrina", text: "Londrina" },
+            { value: "Maringá", text: "Maringá" },
           ],
         },
         {
           value: "Rio Grande do Sul",
           options: [
-            {
-              value: "Pelotas",
-              text: "Pelotas",
-            },
-            {
-              value: "Porto Alegre",
-              text: "Porto Alegre",
-            },
+            { value: null, text: "Selecione" },
+            { value: "Pelotas", text: "Pelotas" },
+            { value: "Porto Alegre", text: "Porto Alegre" },
           ],
         },
         {
           value: "Santa Catarina",
           options: [
+            { value: null, text: "Selecione" },
             { value: "Florianópolis", text: "Florianópolis" },
             { value: "Joinville", text: "Joinville" },
           ],
         },
       ],
       disableSelect: true,
-      disableButton: true,
+      disableButton: false,
     };
   },
 };
