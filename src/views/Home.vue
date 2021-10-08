@@ -106,6 +106,13 @@ export default {
     Select,
     Button,
   },
+  created() {
+    if (this.switch) this.disableSelect = !this.disableSelect;
+
+    this.optionCity = this.optionsToCity.filter(
+      (item) => item.value == this.data.state
+    )[0].options;
+  },
   computed: {
     ...mapGetters({
       data: "getCurrentData",
@@ -159,7 +166,6 @@ export default {
         },
       ],
       disableSelect: true,
-      disableButton: false,
     };
   },
 };
