@@ -29,10 +29,12 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "Input",
   props: {
-    id: Number,
+    id: String,
     label: String,
     placeholder: String,
     msgInvalidFeedBack: String,
@@ -41,6 +43,9 @@ export default {
     range: { begins: Number, ends: Number },
   },
   computed: {
+    ...mapGetters({
+      data: "getCurrentData",
+    }),
     state() {
       if (this.text.length > 0) {
         return (
@@ -58,6 +63,14 @@ export default {
         return this.msgInvalidFeedBack;
       }
       return "Campo Obrigatório";
+    },
+  },
+  methods: {
+    ...mapActions(["setCurrentData"]),
+  },
+  watch: {
+    text: function () {
+      this.setCurrentData({ ...this.data, [this.id]: this.text });
     },
   },
   data() {
