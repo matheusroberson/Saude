@@ -12,19 +12,36 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "Select",
   props: {
-    id: Number,
+    id: String,
     optionsGroup: Array,
     label: String,
     disable: Boolean,
   },
+  computed: {
+    ...mapGetters({
+      data: "getCurrentData",
+    }),
+    options() {
+      return this.optionsGroup;
+    },
+  },
   data() {
     return {
       selected: null,
-      options: this.optionsGroup,
     };
+  },
+  methods: {
+    ...mapActions(["setCurrentData"]),
+  },
+  watch: {
+    selected: function () {
+      this.setCurrentData({ ...this.data, [this.id]: this.selected });
+    },
   },
 };
 </script>
