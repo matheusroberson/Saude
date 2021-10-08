@@ -10,7 +10,7 @@ export default new Vuex.Store({
     cel: "",
     state: null,
     city: null,
-    specialty: "",
+    specialty: null,
     price: 0,
     payment: [],
   },
