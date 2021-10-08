@@ -12,13 +12,13 @@
       <b-row class="subContainer">
         <b-col>
           <Select
-            :id="1"
+            id="specialty"
             :optionsGroup="optionsSelect"
             label="Especialidade principal*"
             :disable="false"
           />
           <Input
-            :id="1"
+            id="price"
             label="Informe o preço da consulta*"
             placeholder="Valor"
             msgInvalidFeedBack="Digite com valor correto"
@@ -28,7 +28,7 @@
             class="input-small"
           />
           <Checkbox
-            :id="1"
+            id="payment"
             label="Formas de pagamento da consulta*"
             :options="optionsCheckbox"
             subCategoryTo="Cartão de crédito"
@@ -49,11 +49,11 @@
           <b-row>
             <b-col>
               <Button
-                :baseColor="disableButton ? '#B9B9B9' : '#483698'"
+                :baseColor="!this.switch ? '#B9B9B9' : '#483698'"
                 textColor="#F9F9F9"
                 text="PRÓXIMO"
-                :disable="disableButton"
-                nextRoute="/Revision"
+                :disable="!this.switch"
+                nextRoute="/revision"
                 class="button"
               />
             </b-col>
@@ -89,10 +89,8 @@ export default {
   },
   computed: mapGetters({
     data: "getCurrentData",
+    switch: "getLastStep",
   }),
-  watch: {
-    data: function () {},
-  },
   data() {
     return {
       optionsSelect: [
@@ -118,7 +116,6 @@ export default {
           ],
         },
       ],
-      disableButton: true,
     };
   },
 };
