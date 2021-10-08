@@ -8,11 +8,11 @@ export default new Vuex.Store({
     name: "",
     cpf: "",
     cel: "",
-    state: "",
+    state: null,
     city: "",
     specialty: "",
     price: 0,
-    payment: "",
+    payment: [],
   },
 
   mutations: {
