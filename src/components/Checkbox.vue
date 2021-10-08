@@ -49,10 +49,12 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "Checkbox",
   props: {
-    id: Number,
+    id: String,
     label: String,
     options: Array,
     subCategoryTo: String,
@@ -65,6 +67,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["setCurrentData"]),
     updateSelected: function () {
       this.selecteds = this.status.map((item) => {
         if (item.includes(this.subCategoryTo)) {
@@ -72,6 +75,8 @@ export default {
         }
         return item;
       });
+
+      this.setCurrentData({ ...this.data, [this.id]: this.selecteds });
     },
   },
   watch: {
@@ -89,6 +94,9 @@ export default {
     },
   },
   computed: {
+    ...mapGetters({
+      data: "getCurrentData",
+    }),
     state() {
       return Boolean(this.selectedRadio);
     },
