@@ -16,6 +16,7 @@
             label="Nome completo*"
             placeholder="Digite o nome completo"
             msgInvalidFeedBack="Digite entre 3 a 48 caracteres"
+            rangeKind="caracter"
             :range="{ begins: 3, ends: 48 }"
           />
           <Input
@@ -23,7 +24,8 @@
             label="CPF*"
             placeholder="Digite um CPF"
             msgInvalidFeedBack="O campo deve conter 11 caracteres númericos"
-            mask="###.###.###-##"
+            :mask="['###.###.###-##']"
+            rangeKind="caracter"
             :range="{ begins: 14, ends: 14 }"
             class="input-small"
           />
@@ -32,8 +34,9 @@
             label="Número de celular*"
             placeholder="(00) 0 0000-0000"
             msgInvalidFeedBack="O campo deve conter 11 caracteres númericos"
-            mask="(##) # ####-####"
+            :mask="['(##) # ####-####']"
             class="input-small"
+            rangeKind="caracter"
             :range="{ begins: 16, ends: 16 }"
           />
           <b-row>
