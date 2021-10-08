@@ -1,5 +1,6 @@
 <template>
   <div class="revision">
+    <b-link class="arrow left mb-3" to="/attendance"></b-link>
     <b-row align-v="stretch" class="container">
       <b-row class="title">
         <b-col cols="12" class="mb-4">
@@ -119,6 +120,19 @@ export default {
 .text.title {
   color: #483698;
   font-size: 1.8rem;
+}
+
+.arrow {
+  border: solid #483698;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 4px;
+  background-color: transparent;
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
 }
 </style>
 // #483698 #FFE776 #FBDE40 #F9F9F9 #DC3545 #8A8A8A #282828
