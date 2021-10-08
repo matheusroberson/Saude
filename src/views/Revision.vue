@@ -76,14 +76,22 @@
 import { mapGetters } from "vuex";
 
 import Button from "@/components/Button.vue";
+import router from "../router/index";
 
 export default {
   name: "Revision",
   components: {
     Button,
   },
+  created() {
+    if (!this.firstSwitch || !this.lastSwitch) {
+      router.push("/");
+    }
+  },
   computed: mapGetters({
     data: "getCurrentData",
+    firstSwitch: "getFirstStep",
+    lastSwitch: "getLastStep",
   }),
 };
 </script>

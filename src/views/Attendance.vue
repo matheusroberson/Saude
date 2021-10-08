@@ -80,6 +80,7 @@ import Input from "@/components/Input.vue";
 import Button from "@/components/Button.vue";
 import Select from "@/components/Select.vue";
 import Checkbox from "@/components/Checkbox.vue";
+import router from "../router/index";
 
 export default {
   name: "Attendance",
@@ -92,7 +93,13 @@ export default {
   computed: mapGetters({
     data: "getCurrentData",
     switch: "getLastStep",
+    prevSwitch: "getFirstStep",
   }),
+  created() {
+    if (!this.prevSwitch) {
+      router.push("/");
+    }
+  },
   data() {
     return {
       optionsSelect: [
