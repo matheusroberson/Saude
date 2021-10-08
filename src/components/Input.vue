@@ -45,6 +45,7 @@ export default {
   computed: {
     ...mapGetters({
       data: "getCurrentData",
+      switch: "getFirstStep",
     }),
     state() {
       if (this.text.length > 0) {
@@ -64,19 +65,17 @@ export default {
       }
       return "Campo Obrigatório";
     },
+    text: {
+      get() {
+        return this.$store.state[this.id];
+      },
+      set(value) {
+        this.setCurrentData({ ...this.data, [this.id]: value });
+      },
+    },
   },
   methods: {
     ...mapActions(["setCurrentData"]),
-  },
-  watch: {
-    text: function () {
-      this.setCurrentData({ ...this.data, [this.id]: this.text });
-    },
-  },
-  data() {
-    return {
-      text: "",
-    };
   },
 };
 </script>

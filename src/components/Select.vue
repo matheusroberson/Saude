@@ -29,19 +29,17 @@ export default {
     options() {
       return this.optionsGroup;
     },
-  },
-  data() {
-    return {
-      selected: null,
-    };
+    selected: {
+      get() {
+        return this.$store.state[this.id];
+      },
+      set(value) {
+        this.setCurrentData({ ...this.data, [this.id]: value });
+      },
+    },
   },
   methods: {
     ...mapActions(["setCurrentData"]),
-  },
-  watch: {
-    selected: function () {
-      this.setCurrentData({ ...this.data, [this.id]: this.selected });
-    },
   },
 };
 </script>

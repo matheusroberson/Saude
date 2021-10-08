@@ -30,14 +30,11 @@ export default new Vuex.Store({
   getters: {
     getCurrentData: (state) => state,
     getFirstStep: (state) =>
-      // state.name !== "" &&
       state.name.length >= 3 &&
       state.name.length <= 48 &&
-      // state.cpf !== "" &&
       state.cpf.length === 14 &&
       state.city !== null &&
       state.state !== null &&
-      // state.cel !== "" &&
       state.cel.length === 16
         ? true
         : false,

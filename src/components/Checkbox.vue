@@ -8,7 +8,7 @@
     >
       <b-form-checkbox-group
         :id="`checkbox-${id}`"
-        v-model="status"
+        v-model="selecteds"
         :name="`checkbox-${id}`"
         :aria-describedby="ariaDescribedby"
         stacked
@@ -22,8 +22,8 @@
           {{ option.text }}
           <b-form-group
             v-if="
-              status.length !== 0 &&
-              status.filter(
+              selecteds.length !== 0 &&
+              selecteds.filter(
                 (item) => item === subCategoryTo && item === option.value
               ).length !== 0
             "
@@ -62,33 +62,20 @@ export default {
   data() {
     return {
       selectedRadio: "",
-      status: [],
-      selecteds: [],
     };
   },
   methods: {
     ...mapActions(["setCurrentData"]),
     updateSelected: function () {
-      this.selecteds = this.status.map((item) => {
+      this.selecteds = this.selecteds.map((item) => {
         if (item.includes(this.subCategoryTo)) {
           item = `${this.subCategoryTo} ${this.selectedRadio}`;
         }
         return item;
       });
-
-      this.setCurrentData({ ...this.data, [this.id]: this.selecteds });
     },
   },
   watch: {
-    status: function () {
-      if (
-        this.status.filter((item) => item.includes(this.subCategoryTo))
-          .length === 0
-      ) {
-        this.selectedRadio = "";
-      }
-      this.updateSelected();
-    },
     selectedRadio: function () {
       this.updateSelected();
     },
@@ -99,6 +86,25 @@ export default {
     }),
     state() {
       return Boolean(this.selectedRadio);
+    },
+    selecteds: {
+      get() {
+        const stateVal = this.$store.state[this.id];
+        return stateVal.map((item) => {
+          if (item.includes(this.subCategoryTo)) {
+            this.selectedRadio = item.replace(this.subCategoryTo, "").trim();
+            item = this.subCategoryTo;
+          }
+          return item;
+        });
+      },
+      set(val) {
+        if (val === this.subCategoryTo) {
+          this.selectedRadio = "";
+        }
+
+        this.setCurrentData({ ...this.data, [this.id]: val });
+      },
     },
   },
 };
