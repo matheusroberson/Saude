@@ -1,24 +1,21 @@
-# saude
+# Sistema saúde
+## Front-end de um Cadastro de Profissional da Saúde 
 
-## Project setup
-```
-yarn install
-```
+### Começo
 
-### Compiles and hot-reloads for development
+#### Pré-requisitos
+- Necessita Node.js 12 ou mais recente.
+
+#### Instalação
+
+- `git clone https://github.com/matheusroberson/saude.git`
+- `cd saude`
+- `yarn install`
+
+---
+
+### Iniciando o Projeto
+
 ```
 yarn serve
 ```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
