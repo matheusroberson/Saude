@@ -1,5 +1,4 @@
-# Sistema saúde
-## Front-end de um Cadastro de Profissional da Saúde 
+# Front-end de um Cadastro de Profissional da Saúde 
 
 ### Começo
 
@@ -19,3 +18,10 @@
 ```
 yarn serve
 ```
+---
+
+## Eu aprendi:
+- Gerenciamento de rotas (Vue Router)
+- Gerenciamento de estado (Vuex)
+- Conceitos de Vue
+- & e muito mais
